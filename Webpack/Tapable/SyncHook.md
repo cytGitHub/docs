@@ -1,4 +1,4 @@
-## tapable 源码分析
+## Tapable SyncHook 源码分析
 
 ### 示例
 
@@ -86,7 +86,8 @@ _insert(item) {
 ```
 
 ##### Car.call() 调用分析
-* Hook类内部绑定的属性如下
+
+- Hook 类内部绑定的属性如下
 
 ```
 class Hook {
@@ -94,8 +95,9 @@ class Hook {
 		this.call = this._call;
 		...
 	}
-	
+
 ```
+
 我们可以看到`this.call = this._call`，有个内部私有属性赋值到了`this.call`上面去,那么`this._call`是什么东西呢？我们继续往下看
 
 ```
@@ -106,6 +108,7 @@ Object.defineProperties(Hook.prototype , "_call" , {
 })
 
 ```
+
 通过这种方式，在`Hook.prototype`的原型上定义了一个私有属性`_call`，该属性的值是`createCompileDelegate`，这是一个方法，接收两个参数，那么这个方法执行的返回值是什么呢？继续往下看
 
 ```
@@ -116,6 +119,7 @@ function createCompileDelegate(name, type) {
 	};
 }
 ```
+
 这个方法返回的是一个函数，同时这个函数接收一些参数，这些参数 也就是`Car.call(arg)`中的`args`参数
 
 在这个函数内部，调用了一个`this._createCall`的函数，这个函数返回的是`compile`函数的执行结果
@@ -126,7 +130,7 @@ function createCompileDelegate(name, type) {
 compile(options) {
 	factory.setup(this, options);
 	return factory.create(options);
-}	
+}
 ```
 
 `factory`是一个类，根据传入的参数，通过字符串拼接的方式生成要执行的`js`代码,然后通过`New Function`的形式来执行代码
