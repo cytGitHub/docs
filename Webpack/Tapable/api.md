@@ -71,5 +71,6 @@
 * `AsyncParalleBailHook`异步并发，只要监听函数不是返回`undefined`，就会直接跳到`callAsync`等触发函数绑定的回调函数，然后执行这个回调
 
 * `AsyncHooks Series`
-  - `AsyncSeriesHook`，异步串行，不关心`callback`的参数
+  - `AsyncSeriesHook`，异步串行，不关心`callback`的参数``
   - `AsyncSeriesBailHook`，异步串行，当返回值不为`undefined`，直接跳转到`callAsync`等绑定的回调函数中，并触发该函数
+  - `AsyncSeriesWaterfallHook` , 异步串行，将返回值传递给下一个函数
