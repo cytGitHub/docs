@@ -45,6 +45,7 @@
     - `render`方法之前调用
     - 初始化挂载以及后续更新都会被调用
     - 返回一个对象更新`state`，如果返回`null`则不更新
+    - 只要父级重新渲染，这个函数也会被调用
 * `ReactDOM`
   - `ReactDOM.createPortal(child, container)`
   - 用法
