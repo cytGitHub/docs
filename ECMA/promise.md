@@ -39,3 +39,55 @@
 ### `Promise.try`
 
 - 不知道一个函数是同步还是异步，可以用`promise.try`来实现
+
+### 基本规则
+
+- Promise 的构造函数会立即执行，Promise.then 会在当前时间循环的结尾立即执行
+- promise 对象的构造函数只会调用一次，then 方法和 catch 方法都能多次调用，但一旦有了确定的结果，再次调用就会直接返回结果。
+
+### 关于 promise 的算法题
+
+- 实现 promise 限流器？
+- promise 串行执行？
+- 实现 mergePromise 函数，把传进去的数组按顺序先后执行，并且把返回的数据先后放到数组 data 中?
+
+```
+const timeout = ms => new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve();
+    }, ms);
+});
+
+const ajax1 = () => timeout(2000).then(() => {
+    console.log('1');
+    return 1;
+});
+
+const ajax2 = () => timeout(1000).then(() => {
+    console.log('2');
+    return 2;
+});
+
+const ajax3 = () => timeout(2000).then(() => {
+    console.log('3');
+    return 3;
+});
+
+const mergePromise = ajaxArray => {
+    // 在这里实现你的代码
+
+};
+
+mergePromise([ajax1, ajax2, ajax3]).then(data => {
+    console.log('done');
+    console.log(data); // data 为 [1, 2, 3]
+});
+
+// 要求分别输出
+// 1
+// 2
+// 3
+// done
+// [1, 2, 3]
+
+```
