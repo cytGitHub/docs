@@ -18,6 +18,7 @@
   - `npm config set unsafe-perm`（针对当前用户的）
 
   - `npm config -g set unsafe-perm` (全局的）
+  - `npm config list -l` 查看当前`npm`的配置
 
 - 改变 Npm 默认的安装路径
   - `mkdir ~/.npm-global` 创建全局安装路径

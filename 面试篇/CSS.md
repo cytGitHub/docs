@@ -1,10 +1,20 @@
 # CSS
 * 标准盒模型和IE低版本盒模型的区别?
-	* 标准盒模型：元素宽度+padding+border
-	* IE盒模型：width+padding+border是一起的 
+	* 标准盒模型：width = content + padding + border
+	* IE盒模型： width = content(conent + padding + border)
 * 什么是BFC?
+  * [https://zhuanlan.zhihu.com/p/98125329] 
 * 清除浮动的方式?
 * flex布局？
 * css创建三角形的原理？
+* css选择器的计算方式
+* position定位方式
+* 浏览器是怎样解析CSS选择器的？
+  * CSS选择器的解析是从右向左解析的。若从左向右的匹配，发现不符合规则，需要进行回溯，会损失很多性能。若从右向左匹配，先找到所有的最右节点，对于每一个节点，向上寻找其父节点直到找到根元素或满足条件的匹配规则，则结束这个分支的遍历。两种匹配规则的性能差别很大，是因为从右向左的匹配在第一步就筛选掉了大量的不符合条件的最右节点（叶子节点），而从左向右的匹配规则的性能都浪费在了失败的查找上面。
+而在 CSS 解析完毕后，需要将解析的结果与 DOM Tree 的内容一起进行分析建立一棵 Render Tree，最终用来进行绘图。在建立 Render Tree 时（WebKit 中的「Attachment」过程），浏览器就要为每个 DOM Tree 中的元素根据 CSS 的解析结果（Style Rules）来确定生成怎样的 Render Tree。 
+* ::before 和 :after中双冒号和单冒号有什么区别？解释一下这2个伪元素的作用
+  * 单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素。
+  * ::before就是以一个子元素的存在，定义在元素主体内容之前的一个伪元素。并不存在于dom之中，只存在在页面之中。 
+* li与li之间有看不见的空白间隔是什么原因引起的？有什么解决办法？
 
 
